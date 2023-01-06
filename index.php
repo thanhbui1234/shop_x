@@ -1,7 +1,7 @@
 <?php
-
 include './include/header.php'
 ?>
+<?php include "./include/functions.php"?>
 
 <body id="page-top">
     <!-- Navigation-->
@@ -54,8 +54,6 @@ include './include/products.php'
 
     <!-- Contact-->
     <?php include './include/contact.php'?>
-
-
 
 
 
