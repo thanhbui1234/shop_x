@@ -43,7 +43,7 @@
 
 
                     <div class="cat_child_2">
-                        <table class=" table   table-bordered ">
+                        <table class="  table  table-bordered ">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -60,8 +60,8 @@
                                 <tr>
                                     <td><?php echo $category['id_cat'] ?></td>
                                     <td><?php echo $category['name_cat'] ?></td>
-                                    <td><a class="text-success" href="">Update</a>
-                                        <a class="text-danger " href="">Delete</a>
+                                    <td><a class=" btn btn-success" href="">Update</a>
+                                        <a class=" btn btn-danger " href="">Delete</a>
                                     </td>
 
                                 </tr>
