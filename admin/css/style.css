@@ -1,0 +1,19 @@
+#add_category {
+  margin-bottom: 30px;
+}
+#big_cat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+.cat_child {
+  margin: 10px;
+}
+.cat_child_2 {
+  margin-top: 35px;
+  margin-right: 350px;
+}
+#errCat {
+  padding-top: 10px;
+  color: red !important;
+}
