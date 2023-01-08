@@ -2,8 +2,9 @@
 
 <?php include './include/admin_function.php'?>
 
-
+<?php updateCategory()?>
 <?php addCategories()?>
+<?php deleteCategory()?>
 
 <body id="page-top" class="">
     <!-- Page Wrapper -->
@@ -41,7 +42,6 @@
                         </form>
                     </div>
 
-
                     <div class="cat_child_2">
                         <table class="  table  table-bordered ">
                             <thead>
@@ -60,8 +60,10 @@
                                 <tr>
                                     <td><?php echo $category['id_cat'] ?></td>
                                     <td><?php echo $category['name_cat'] ?></td>
-                                    <td><a class=" btn btn-success" href="">Update</a>
-                                        <a class=" btn btn-danger " href="">Delete</a>
+                                    <td><a class=" btn btn-success"
+                                            href="/admin/cat_product.php?updateCat=<?php echo $category['id_cat'] ?>">Update</a>
+                                        <a class=" btn btn-danger "
+                                            href="/admin/cat_product.php?deleteCat=<?php echo $category['id_cat'] ?>">Delete</a>
                                     </td>
 
                                 </tr>
@@ -72,6 +74,33 @@
                     </div>
 
                 </div>
+
+
+
+                <?php if (isset($_GET['updateCat'])) {?>
+                <?php showCatDelete()?>
+
+                <div class="cat_child_update">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <?php foreach ($dataShowcatDelete as $value) {?>
+
+                            <label for="exampleInputEmail1"></label>
+                            <input type="text" value="<?php echo $value['name_cat'] ?>" class="form-control"
+                                name="categoryUpdate" aria-describedby="emailHelp" placeholder="">
+
+                        </div>
+                        <button type="submit" name="update" id="add_category" class="btn btn-primary">Sửa loại sản
+                            phẩm
+                        </button>
+                        <?php }?>
+                        <button type="submit" name="cancel" id="add_category" class="btn btn-danger">Hủy
+                        </button>
+                    </form>
+                </div>
+                <?php } else {
+    echo "";
+}?>
 
 
 

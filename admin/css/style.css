@@ -17,3 +17,25 @@
   padding-top: 10px;
   color: red !important;
 }
+.cat_child_update {
+  width: 620px;
+  margin-left: 10px;
+}
+#select {
+  border: gray 1px solid;
+  border-radius: 3px;
+  padding: 5px 0px;
+}
+#selectStatus {
+  border-radius: 3px;
+  padding: 2px 0px;
+}
+#percent {
+  position: relative;
+
+  top: -31px;
+  left: 43px;
+}
+#err_prod {
+  color: red !important;
+}
