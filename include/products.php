@@ -31,7 +31,6 @@
                          </a>
                          <div class="portfolio-caption-subheading text-muted">
                              <?php echo $prod['prod_price'] ?> VND
-
                          </div>
                      </div>
                  </div>

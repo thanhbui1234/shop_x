@@ -32,6 +32,11 @@ switch ($product) {
 
         break;
 
+    case 'update_product':
+        include './include/update_product.php';
+
+        break;
+
     default:
         include './include/view_all_products.php';
         break;

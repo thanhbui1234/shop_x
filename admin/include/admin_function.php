@@ -124,7 +124,6 @@ function addProduct()
         move_uploaded_file($prod_image_tmp, $target_file);
         $prod_sale = $_POST['prod_sale'];
         $prod_content = $_POST['prod_content'];
-        $name = $_POST['prod_name'];
         global $errProduct;
         $errProduct = [];
 
@@ -161,6 +160,113 @@ function addProduct()
 
         }
 
+    }
+
+}
+function showUpdateProduct()
+{
+    if (isset($_GET['id'])) {
+        global $conn;
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM prod where id = $id";
+        $statement = $conn->prepare($sql);
+        global $dataShowUpdateProd;
+        $statement->execute();
+        $dataShowUpdateProd = $statement->fetchAll();
+    }
+
+}
+
+function selectshowUpdateProduct($value)
+{
+    global $conn;
+    $sql = "SELECT name_cat FROM prod_categories where name_cat != '$value' ";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    global $dataShowSelect;
+    $dataShowSelect = $statement->fetchAll();
+}
+
+function updateProduct()
+{
+    if (isset($_POST['updateProd'])) {
+
+        $id = $_GET['id'];
+
+        global $conn;
+        $prod_name = $_POST['prod_name'];
+        $prod_category = $_POST['prod_category'];
+        $prod_tag = $_POST['prod_tag'];
+// convert string to number
+        $prod_price = $_POST['prod_price'];
+        $prod_status = $_POST['prod_status'];
+        // nếu user k nhập ảnh mà muốn sử dụng ảnh cũ
+        $prod_img = $_FILES['prod_img']['name'];
+        if (empty($prod_img)) {
+            $sqlimg = "select prod_img from prod where id = $id";
+            $statementimg = $conn->prepare($sqlimg);
+            $statementimg->execute();
+            $dataImg = $statementimg->fetchAll();
+            foreach ($dataImg as $img) {
+                $prod_img = $img['prod_img'];
+            }
+
+        }
+
+        $prod_image_tmp = $_FILES['prod_img']['tmp_name'];
+        $targe_dir = '../uploads//';
+        $target_file = $targe_dir . $prod_img;
+        move_uploaded_file($prod_image_tmp, $target_file);
+        $prod_sale = $_POST['prod_sale'];
+        $prod_content = $_POST['prod_content'];
+
+        $sql = " update prod set prod_name = '$prod_name' , prod_cat = '$prod_category'  ,prod_tag = '$prod_tag'  ";
+        $sql .= ", prod_price = '$prod_price', prod_status = '$prod_status ' , prod_img = '$prod_img' , prod_sale  = '$prod_sale' , prod_content = '$prod_content' ";
+        $sql .= " where id = $id";
+        $statement = $conn->prepare($sql);
+
+        if ($statement->execute()) {
+            echo "<script> Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Bạn đã cập nhật thành công',
+  showConfirmButton: false,
+  timer: 1500
+}) </script>";
+
+        }
+
+    }
+
+}
+
+function deleteProduct()
+{
+
+    if (isset($_GET['product'])) {
+        global $conn;
+
+        $id = $_GET['id'];
+        $sql = " DELETE FROM  prod WHERE id = $id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+    }
+}
+
+function apply()
+{
+
+    if (isset($_POST['apply'])) {
+        $checkBoxall = $_POST['checkBoxArr'];
+
+        foreach ($checkBoxall as $checkBox) {
+
+            echo $checkBox;
+        }
+
+    } else {
+
+        echo " phại chọn không được ấn bừa";
     }
 
 }

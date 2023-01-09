@@ -39,3 +39,16 @@
 #err_prod {
   color: red !important;
 }
+.content {
+  width: 250px;
+}
+.action_prod {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+#apply_prod {
+  margin-left: 20px;
+  height: 38px;
+  padding: 0 15px;
+}

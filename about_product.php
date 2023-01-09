@@ -27,6 +27,8 @@ include './include/header.php'
             <h2 class="text-danger">Giá <?php echo $product['prod_price'] ?>đ
             </h2>
 
+            <p class="mt-4"><?php echo $product['prod_content'] ?></p>
+
             <div class="buy">
                 <h5>
                     <i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng
