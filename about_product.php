@@ -7,12 +7,6 @@ include './include/header.php'
     <!-- Navigation-->
     <?php include './include/nav.php'?>
 
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading"></div>
-            <div class="masthead-heading text-uppercase"></div>
-        </div>
-    </header>
 
     <div class="bg-bg-light container" id="product">
         <?php showProductsOnly()?>
@@ -43,10 +37,8 @@ include './include/header.php'
         <?php }?>
     </div>
 
-    <!-- Clients-->
 
 
-    <!-- Contact-->
 
 
 

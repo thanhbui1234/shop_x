@@ -48,13 +48,13 @@
      <hr class="sidebar-divider" />
 
      <!-- Heading -->
-     <div class="sidebar-heading">Addons</div>
+     <div class="sidebar-heading">Tài khoản</div>
 
      <!-- Nav Item - Tables -->
      <li class="nav-item">
          <a class="nav-link" href="tables.html">
              <i class="fas fa-fw fa-table"></i>
-             <span>Tables</span></a>
+             <span>Người dùng</span></a>
      </li>
 
      <!-- Divider -->

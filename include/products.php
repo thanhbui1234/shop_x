@@ -40,4 +40,13 @@
 
          </div>
      </div>
+     <div id="paging" class="  text-center mt-5">
+         <li><a href='index.php?page=$i'>1</a></li>
+         <li><a href='index.php?page=$i'>1</a></li>
+         <li><a href='index.php?page=$i'>1</a></li>
+         <li><a href='index.php?page=$i'>1</a></li>
+         <li><a href='index.php?page=$i'>1</a></li>
+         <li><a href='index.php?page=$i'>1</a></li>
+
+     </div>
  </section>

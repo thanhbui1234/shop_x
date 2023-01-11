@@ -7,6 +7,7 @@
              Menu
              <i class="fas fa-bars ms-1"></i>
          </button>
+
          <div class="collapse navbar-collapse" id="navbarResponsive">
              <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                  <li class="nav-item">
@@ -28,7 +29,21 @@
 
 
                  </li>
+                 <li id="search" class="nav-item">
+                     <form action="search.php" method="post">
+                         <input name="search" class="input-group" type="text">
+                         <button name="search_submit"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                     </form>
+
+
+                 </li>
              </ul>
          </div>
      </div>
  </nav>
+ <header class="masthead">
+     <div class="container">
+         <div class="masthead-subheading"></div>
+         <div class="masthead-heading text-uppercase"></div>
+     </div>
+ </header>

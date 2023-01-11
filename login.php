@@ -62,6 +62,11 @@ include './include/header.php'
 
                         </div>
 
+                        <div id="notregister" class="position-absolute ">
+                            <P class="text-white"> Bạn chưa có tài khoản shop-x ? <a href="/register.php">Đăng ký</a>
+                            </P>
+                        </div>
+
                     </div>
 
                 </div>

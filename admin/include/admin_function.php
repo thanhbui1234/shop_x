@@ -6,7 +6,8 @@ include '/xampp/htdocs/shop_x/include/database.php';
 function showProducts()
 {
     global $conn;
-    $sql = "SELECT * FROM prod ";
+    // select sản phẩm mới nhất
+    $sql = "SELECT * FROM prod order by id  desc ";
     $statement = $conn->prepare($sql);
     $statement->execute();
     global $dataShowProducts;
@@ -257,16 +258,68 @@ function apply()
 {
 
     if (isset($_POST['apply'])) {
-        $checkBoxall = $_POST['checkBoxArr'];
+        global $conn;
 
-        foreach ($checkBoxall as $checkBox) {
+        if (!empty($_POST['checkBoxArr'])) {
 
-            echo $checkBox;
+            $checkBoxall = $_POST['checkBoxArr'];
+
+            foreach ($checkBoxall as $checkBox) {
+
+                $option = $_POST['option'];
+
+                switch ($option) {
+                    case "public";
+
+                        $sql = " update prod set prod_status = 'public' where id = $checkBox";
+                        $statement = $conn->prepare($sql);
+                        $statement->execute();
+
+                        break;
+
+                    case "private";
+
+                        $sql = " update prod set prod_status = 'private' where id = $checkBox";
+                        $statement = $conn->prepare($sql);
+                        $statement->execute();
+
+                        break;
+
+                    case "delete";
+                        $sql = " delete from prod where id = $checkBox";
+                        $statement = $conn->prepare($sql);
+                        $statement->execute();
+
+                        break;
+
+                    case 'clone';
+
+                        $sqlSelect = "select * from prod where id = $checkBox";
+                        $statementSelect = $conn->prepare($sqlSelect);
+                        $statementSelect->execute();
+
+                        $dataClone = $statementSelect->fetchAll();
+
+                        foreach ($dataClone as $clone) {
+
+                            $sql = "insert into prod ( prod_name  , prod_cat , prod_price , prod_img ,  prod_tag ,  prod_content,   prod_status , prod_sale )";
+                            $sql .= " values ('$clone[prod_name]' , '$clone[prod_cat]', '$clone[prod_price]' , ";
+                            $sql .= " '$clone[prod_img]' , '$clone[prod_tag]' , '$clone[prod_content]' , '$clone[prod_status]' , '$clone[prod_sale]' )  ";
+                            $statement = $conn->prepare($sql);
+                            $statement->execute();
+
+                        }
+
+                        break;
+
+                    case "";
+
+                        echo " bạn phải chọn chức năng";
+                        break;
+
+                }
+
+            }
         }
 
-    } else {
-
-        echo " phại chọn không được ấn bừa";
-    }
-
-}
+    }}

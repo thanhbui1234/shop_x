@@ -8,22 +8,16 @@ include './include/header.php'
     <?php include './include/nav.php'?>
 
 
+    <!-- Products-->
 
 
-
-
-    <!-- PRODUCTS -->
-
-    <?php
-
-include './include/products.php'
-
-?>
+    <?php include './include/searchProd.php'?>
 
 
 
     <!-- Clients-->
     <?php include './include/clients.php'?>
+
 
 
     <!-- Contact-->

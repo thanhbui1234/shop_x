@@ -18,6 +18,8 @@
   color: red !important;
 }
 .cat_child_update {
+  position: absolute;
+  top: 300px;
   width: 620px;
   margin-left: 10px;
 }
