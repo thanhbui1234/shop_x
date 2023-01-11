@@ -1,7 +1,8 @@
 <?php
-
 include './include/header.php'
 ?>
+<?php include './include/functions.php'?>
+<?php login()?>
 
 <body id="page-top">
     <!-- Navigation-->
@@ -43,19 +44,25 @@ include './include/header.php'
                 </h3>
             </div>
 
-            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+            <form id="contactForm" method="post" action="#" data-sb-form-api-token="API_TOKEN">
                 <div class="row align-items-stretch mb-5">
                     <div class="">
                         <div class="form-group">
                             <!-- Name input-->
-                            <input class="form-control" id="name" type="text" placeholder="Your User Name *"
-                                data-sb-validations="required" />
+                            <input class="form-control" name="userName" id="name" type="text"
+                                placeholder="Your User Name *" data-sb-validations="required" />
+
+                            <h2 class=" login text-lg">
+                                <?php echo isset($errLogin['userName']) ? $errLogin['userName'] : '' ?></h2>
 
                         </div>
                         <div class="form-group">
                             <!-- Email address input-->
-                            <input class="form-control" type="password" placeholder="Your Password *"
+                            <input class="form-control" name="password" type="password" placeholder="Your Password *"
                                 data-sb-validations="required,email" />
+
+                            <h2 class=" login text-lg">
+                                <?php echo isset($errLogin['password']) ? $errLogin['password'] : '' ?></h2>
 
 
                         </div>
@@ -74,7 +81,7 @@ include './include/header.php'
                 <!-- has successfully submitted-->
 
                 <div class="text-center">
-                    <button class="btn btn-primary btn-xl text-uppercase " id="submitButton" type="submit">
+                    <button class="btn btn-primary btn-xl text-uppercase " id="submitButton" name="login" type="submit">
                         Đăng nhập
                     </button>
                 </div>

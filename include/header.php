@@ -1,3 +1,5 @@
+<?php ob_start()?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +27,7 @@
     <!-- owlcarousel2 -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 

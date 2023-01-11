@@ -101,7 +101,10 @@ include './include/header.php'
                             <input name="password" class="form-control " id="email" type="password"
                                 placeholder="Mật khẩu *" data-sb-validations="required,email" />
                             <h4 class='err_user'><?php echo isset($errUser['password']) ? $errUser['password'] : ''; ?>
-                            </h4>
+                                <h4 class='err_user'>
+                                    <?php echo isset($errUser['passwordLength']) ? $errUser['passwordLength'] : ''; ?>
+
+                                </h4>
 
                         </div>
 

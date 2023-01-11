@@ -74,6 +74,7 @@ function register()
         $userName = htmlspecialchars($_POST['userName']);
         $password = htmlspecialchars($_POST['password']);
         $password2 = htmlspecialchars($_POST['password2']);
+        $dateRegister = date("Y-m-d H:i a ");
 
         global $errUser;
 
@@ -95,9 +96,17 @@ function register()
 
         //  can gioi han mat khau
 
-        if (empty($password)) {
+        try {
+            if (empty($password)) {
 
-            $errUser['password'] = 'Bạn phải nhập  mật khẩu';
+                $errUser['password'] = 'Bạn phải nhập  mật khẩu';
+
+            } else if (strlen($password) <= 5) {
+                $errUser['passwordLength'] = 'Mật khẩu phải dài hơn 5 ký tự ';
+
+            }
+        } catch (\Throwable$th) {
+            //throw $th;
         }
 
         if (empty($password2)) {
@@ -140,10 +149,20 @@ function register()
 
         if (empty($errUser)) {
             $arr = ['cost' => 12];
-            echo $phone;
+            $phone;
             $password = password_hash($password, PASSWORD_BCRYPT, $arr);
 
-            // $sql = " insert into prod  () "
+            $sql = " insert into user (user_fullName , user_email ,user_name ,user_password ,phone ,date_register ) ";
+            $sql .= " values ( '$fullName','$email','$userName','$password','$phone', '$dateRegister' ) ";
+            $statement = $conn->prepare($sql);
+
+            if ($statement->execute()) {
+                echo "<script>Swal.fire(
+  'Good job!',
+  'You clicked the button!',
+  'success'
+)</script>";
+            }
 
         }
 
@@ -165,6 +184,60 @@ function search()
         $statement->execute();
         global $dataSearch;
         $dataSearch = $statement->fetchAll();
+
+    }
+
+}
+function login()
+{
+    if (isset($_POST['login'])) {
+
+        global $conn;
+
+        $userName = htmlspecialchars($_POST['userName']);
+        $password = htmlspecialchars($_POST['password']);
+        global $errLogin;
+        $errLogin = [];
+
+        if (empty($userName)) {
+            $errLogin['userName'] = 'Bạn phải nhập tài khoản đăng nhập';
+
+        }
+
+        if (empty($password)) {
+            $errLogin['password'] = 'Bạn phải nhập mật khẩu';
+
+        }
+
+        $sql = "select * from user where user_name = '$userName' ";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+
+        $dataLogin = $statement->fetchAll();
+        if (empty($dataLogin)) {
+            return false;
+
+        }
+        foreach ($dataLogin as $user) {
+
+            $userId = $user['user_id'];
+            $userName = $user['user_name'];
+            $userFullName = $user['user_fullName'];
+            $userPassword = $user['user_password'];
+        }
+
+        if ((password_verify($password, $userPassword))) {
+            $_SESSION['userId'] = $user['user_id'];
+            $_SESSION['user_fullName'] = $user['user_fullName'];
+            $_SESSION['user_name'] = $user['user_name'];
+
+            header('location: /index.php');
+
+        } else {
+
+            echo " wrong";
+
+        }
 
     }
 
