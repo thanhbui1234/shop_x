@@ -16,7 +16,7 @@ include './include/header.php'
 
     <?php
 
-include './include/products.php'
+include './include/linkcat.php'
 
 ?>
 

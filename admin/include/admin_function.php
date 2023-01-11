@@ -104,6 +104,20 @@ function updateCategory()
 
 }
 
+function showNameCat($value)
+{
+    if (isset($value)) {
+        global $conn;
+        $sql = " select name_cat from prod_categories where id_cat = $value";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        global $dataNameCat;
+        $dataNameCat = $statement->fetchAll();
+
+    }
+
+}
+
 /// product
 
 function addProduct()

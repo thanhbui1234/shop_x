@@ -19,9 +19,7 @@ include './include/header.php'
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Đăng ký</a>
-                    </li>
+
 
                     <li class="nav-item">
 
@@ -77,10 +75,12 @@ include './include/header.php'
 
                         <div class="form-group mb-md-0">
                             <input name="phone" class="form-control " id="phone" type="text"
-                                $placeholder="Số điện thoại *" data-sb-validations="required" />
+                                placeholder="Số điện thoại *" data-sb-validations="required" />
                             <h4 class='err_user'><?php echo isset($errUser['phone']) ? $errUser['phone'] : ''; ?></h4>
                             <h4 class='err_user'>
                                 <?php echo isset($errUser['phonetext']) ? $errUser['phonetext'] : ''; ?></h4>
+                            <h4 class='err_user'>
+                                <?php echo isset($errUser['phoneCount']) ? $errUser['phoneCount'] : ''; ?></h4>
 
                         </div>
 

@@ -4,7 +4,7 @@
          <i class="fa fa-bars"></i>
      </button>
 
-     <a href="../index.php">home</a>
+     <a href="/index.php">home</a>
 
 
      <!-- Topbar Navbar -->

@@ -33,6 +33,36 @@ function showProductsOnly()
     }
 }
 
+function showCategoriesHome()
+{
+
+    global $conn;
+    $sql = " select * from prod_categories ";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    global $dataCategoriesHome;
+    $dataCategoriesHome = $statement->fetchAll();
+
+}
+
+function linkCategories()
+{
+
+    if (isset($_GET['id'])) {
+        global $conn;
+
+        $id = $_GET['id'];
+
+        $sql = " select * from prod where prod_cat = $id ";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        global $dataLinkCat;
+        $dataLinkCat = $statement->fetchAll();
+
+    }
+
+}
+
 function register()
 {
     if (isset($_POST['register'])) {
@@ -57,32 +87,55 @@ function register()
 
             $errUser['email'] = 'Bạn phải nhập  email';
         }
-        if (empty($phone)) {
-
-            $errUser['phone'] = 'Bạn phải nhập  số điện thoại';
-        }
-
-        if (!preg_match('/^[0-9]{10}+$/', $phone)) {
-            $errUser['phonetext'] = 'Bạn phải nhập đúng ';
-
-        }
 
         if (empty($userName)) {
 
             $errUser['userName'] = 'Bạn phải nhập  tên đăng nhập';
         }
+
+        //  can gioi han mat khau
+
         if (empty($password)) {
 
             $errUser['password'] = 'Bạn phải nhập  mật khẩu';
         }
+
         if (empty($password2)) {
 
             $errUser['password2'] = 'Bạn phải nhập lại mật khẩu';
-        }
-
-        if ($password2 !== $password) {
+        } else if ($password2 !== $password) {
 
             $errUser['errpass'] = ' Bạn phải nhập đúng mật khẩu';
+        }
+
+        try {
+            if (empty($phone)) {
+                $errUser['phone'] = 'Bạn phải nhập  số điện thoại';
+
+            } else if (!preg_match('/^[0-9]/', $phone)) {
+                $errUser['phonetext'] = 'Bạn phải nhập đúng ';
+
+            } else if (strlen($phone) <= 9) {
+                $errUser['phoneCount'] = "Sdt có vấn đề !!";
+            }
+
+        } catch (Exception $e) {
+            echo ': ' . $e->getMessage();
+
+        }
+
+        try {
+            if (empty($password2)) {
+                $errUser['password2'] = 'Bạn phải nhập lại mật khẩu';
+
+            } else if ($password2 !== $password) {
+                $errUser['errpass'] = ' Bạn phải nhập đúng mật khẩu';
+
+            }
+
+        } catch (Exception $e) {
+            echo ': ' . $e->getMessage();
+
         }
 
         if (empty($errUser)) {

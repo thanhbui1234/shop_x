@@ -13,6 +13,9 @@
                  <li class="nav-item">
                      <a class="nav-link" href="/admin//index.php">Admin</a>
                  </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="#categories_nav">Danh mục</a>
+                 </li>
 
                  <li class="nav-item">
                      <a class="nav-link" href="#portfolio">Sản phẩm</a>
@@ -24,7 +27,7 @@
                  <li class="nav-item">
 
                      <span>
-                         <a class="nav-link" href="/login.php">Đăng Nhap</a>
+                         <a class="nav-link" href="/login.php">Đăng Nhập</a>
                      </span>
 
 

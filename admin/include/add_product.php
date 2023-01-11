@@ -17,7 +17,7 @@
             <?php showCategories()?>
 
             <?php foreach ($dataCategories as $category) {?>
-            <option value="<?php echo $category['name_cat'] ?>"><?php echo $category['name_cat'] ?></option>
+            <option value="<?php echo $category['id_cat'] ?>"><?php echo $category['name_cat'] ?></option>
             <?php }?>
         </select>
     </div>

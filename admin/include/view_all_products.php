@@ -42,7 +42,15 @@
                         type="checkbox"> </td>
                 <td> <?php echo $product['id'] ?></td>
                 <td> <?php echo $product['prod_name'] ?></td>
-                <td> <?php echo $product['prod_cat'] ?></td>
+
+                <?php showNameCat($product['prod_cat'])?>
+
+                <?php foreach ($dataNameCat as $nameCat) {?>
+
+                <td> <?php echo $nameCat['name_cat'] ?> </td>
+                <?php }?>
+
+
                 <td> <?php echo $product['prod_price'] ?></td>
                 <td><img width="90" src="/uploads//<?php echo $product['prod_img'] ?>" alt=""></td>
 
