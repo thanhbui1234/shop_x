@@ -200,7 +200,7 @@ function login()
         $errLogin = [];
 
         if (empty($userName)) {
-            $errLogin['userName'] = 'Bạn phải nhập tài khoản đăng nhập';
+            return $errLogin['userName'] = 'Bạn phải nhập tài khoản đăng nhập';
 
         }
 
@@ -215,8 +215,7 @@ function login()
 
         $dataLogin = $statement->fetchAll();
         if (empty($dataLogin)) {
-            return false;
-
+            return $errLogin['falseUserName'] = 'Tai khoan sai';
         }
         foreach ($dataLogin as $user) {
 
@@ -235,7 +234,7 @@ function login()
 
         } else {
 
-            echo " wrong";
+            return $errLogin['falsePassword'] = 'Mat khau sai';
 
         }
 

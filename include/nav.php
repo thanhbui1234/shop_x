@@ -27,7 +27,10 @@
                  <li class="nav-item">
 
                      <span>
-                         <a class="nav-link" href="/login.php">Đăng Nhập</a>
+
+                         <?php echo isset($_SESSION['user_name']) ? "<a class='nav-link' href='/login.php'>$_SESSION[user_name]</a>" : "<a class='nav-link' href='/login.php'>Đăng Nhập</a>"; ?>
+
+                         <!-- <a class='nav-link' href='/login.php'>Đăng Nhập</a> -->
                      </span>
 
 
