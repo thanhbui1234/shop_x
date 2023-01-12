@@ -53,7 +53,12 @@ include './include/header.php'
                                 placeholder="Your User Name *" data-sb-validations="required" />
 
                             <h2 class=" login text-lg">
-                                <?php echo isset($errLogin['userName']) ? $errLogin['userName'] : '' ?></h2>
+                                <h2 class="login">
+                                    <?php echo isset($errLogin['userName']) ? $errLogin['userName'] : '' ?></h2>
+                                <h2 class="login">
+                                    <?php echo isset($errLogin['falseUserName']) ? $errLogin['falseUserName'] : '' ?>
+                                </h2>
+
 
                         </div>
                         <div class="form-group">
@@ -62,7 +67,11 @@ include './include/header.php'
                                 data-sb-validations="required,email" />
 
                             <h2 class=" login text-lg">
-                                <?php echo isset($errLogin['password']) ? $errLogin['password'] : '' ?></h2>
+                                <h2 class="login">
+                                    <?php echo isset($errLogin['password']) ? $errLogin['password'] : '' ?></h2>
+                                <h2 class="login">
+                                    <?php echo isset($errLogin['falsePassword']) ? $errLogin['falsePassword'] : '' ?>
+                                </h2>
 
 
                         </div>
@@ -78,7 +87,7 @@ include './include/header.php'
                 <!-- Submit success message-->
                 <!---->
                 <!-- This is what your users will see when the form-->
-                <!-- has successfully submitted-->
+                <!-- has successfully submitted-->Bùi Chí Thanh
 
                 <div class="text-center">
                     <button class="btn btn-primary btn-xl text-uppercase " id="submitButton" name="login" type="submit">
