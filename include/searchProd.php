@@ -2,15 +2,22 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase"></h2>
-                <h3 class="section-subheading text-muted">
-                    Tìm kiếm những điều mà bạn mong muốn.
-                </h3>
+
             </div>
 
             <?php search()?>
 
 
             <div class="row">
+
+                <?php if (empty($dataSearch)) {?>
+
+
+                <h2 class="text-center text-danger">Không có thông tin mà bạn cần tìm <i class="fa-solid fa-bomb"></i>
+                </h2>
+
+                <?php } else {?>
+
                 <?php foreach ($dataSearch as $prod) {?>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Portfolio item 1-->
@@ -33,7 +40,7 @@
                     </div>
                 </div>
 
-                <?php }?>
+                <?php }}?>
 
             </div>
         </div>

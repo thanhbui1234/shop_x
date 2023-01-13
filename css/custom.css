@@ -74,3 +74,10 @@
 .login {
   color: red;
 }
+#button {
+  position: relative;
+  left: 0;
+}
+.id_user {
+  border-radius: 50%;
+}

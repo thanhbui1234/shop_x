@@ -26,12 +26,29 @@
                  </li>
                  <li class="nav-item">
 
-                     <span>
+                     <?php if (isset($_SESSION['user_name'])) {?>
+                     <div class="dropdown">
 
-                         <?php echo isset($_SESSION['user_name']) ? "<a class='nav-link' href='/login.php'>$_SESSION[user_name]</a>" : "<a class='nav-link' href='/login.php'>Đăng Nhập</a>"; ?>
+                         <span class=" nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                             aria-expanded="false">
+                             <img class="id_user" width="20" src="/assets//img/portfolio//avatardefault_92824.webp"
+                                 alt="">
+                             <?php echo $_SESSION['user_name'] ?>
+                         </span>
+                         <ul class="dropdown-menu">
+                             <li><a class="dropdown-item" href="#">Admin</a></li>
+                             <li><a class="dropdown-item" href="#">Profile</a></li>
+                             <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
+                         </ul>
+                     </div>
 
-                         <!-- <a class='nav-link' href='/login.php'>Đăng Nhập</a> -->
-                     </span>
+
+                     <?php } else {?>
+
+                     <a class="nav-link" href="/login.php">Đăng nhập</a>
+
+                     <?php }?>
+
 
 
                  </li>

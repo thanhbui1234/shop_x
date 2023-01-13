@@ -54,3 +54,6 @@
   height: 38px;
   padding: 0 15px;
 }
+.headTable th {
+  font-size: 15px;
+}
