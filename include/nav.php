@@ -10,9 +10,7 @@
 
          <div class="collapse navbar-collapse" id="navbarResponsive">
              <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                 <li class="nav-item">
-                     <a class="nav-link" href="/admin//index.php">Admin</a>
-                 </li>
+
                  <li class="nav-item">
                      <a class="nav-link" href="#categories_nav">Danh mục</a>
                  </li>
@@ -36,7 +34,7 @@
                              <?php echo $_SESSION['user_name'] ?>
                          </span>
                          <ul class="dropdown-menu">
-                             <li><a class="dropdown-item" href="#">Admin</a></li>
+                             <li><a class="dropdown-item" href="/admin.php">Admin</a></li>
                              <li><a class="dropdown-item" href="#">Profile</a></li>
                              <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
                          </ul>
