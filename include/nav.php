@@ -34,9 +34,16 @@
                              <?php echo $_SESSION['user_name'] ?>
                          </span>
                          <ul class="dropdown-menu">
-                             <li><a class="dropdown-item" href="/admin.php">Admin</a></li>
-                             <li><a class="dropdown-item" href="#">Profile</a></li>
+                             <?php echo $_SESSION['user_role'] == 1 ? " <li><a class='dropdown-item' href='/admin.php'> Admin</a></li>" : ''; ?>
+
+                             <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+
+                             <?php echo $_SESSION['user_role'] != 1 ? " <li><a class='dropdown-item' href='/admin/index.php'> Trang quản trị</a></li>" : ''; ?>
+
+
                              <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
+
+
                          </ul>
                      </div>
 

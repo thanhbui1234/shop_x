@@ -84,10 +84,7 @@ include './include/header.php'
                     </div>
 
                 </div>
-                <!-- Submit success message-->
-                <!---->
-                <!-- This is what your users will see when the form-->
-                <!-- has successfully submitted-->Bùi Chí Thanh
+
 
                 <div class="text-center">
                     <button class="btn btn-primary btn-xl text-uppercase " id="submitButton" name="login" type="submit">

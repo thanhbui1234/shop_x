@@ -337,3 +337,59 @@ function apply()
         }
 
     }}
+
+function showUsers()
+{
+
+    global $conn;
+    $sql = "SELECT * FROM user where user_role =1 or user_role = 2";
+
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    global $users;
+    $users = $statement->fetchAll();
+}
+
+function normalUsers()
+{
+
+    global $conn;
+    if (isset($_GET['normalUser'])) {
+        $id = $_GET['normalUser'];
+        $sql = " update user set user_role = '1' where user_id = $id";
+        $statement = $conn->prepare($sql);
+
+        if ($statement->execute()) {
+            header('location : ./user.php ');
+        }
+
+    }
+}
+
+function adminUsers()
+{
+
+    global $conn;
+    if (isset($_GET['adminUser'])) {
+        $id = $_GET['adminUser'];
+        $sql = " update user set user_role = '2' where user_id = $id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+
+    }
+}
+
+function deleteUsers()
+{
+
+    if (isset($_GET['deleteUser'])) {
+        global $conn;
+
+        $id = $_GET['deleteUser'];
+
+        $sql = "DELETE FROM user WHERE user_id = $id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+
+    }
+}

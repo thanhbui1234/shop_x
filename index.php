@@ -21,7 +21,6 @@ include './include/products.php'
 ?>
 
 
-
     <!-- Clients-->
     <?php include './include/clients.php'?>
 

@@ -218,7 +218,7 @@ function login()
             return $errLogin['falseUserName'] = 'Tai khoan sai';
         }
         foreach ($dataLogin as $user) {
-
+            $userimg = $user['user_img'];
             $userId = $user['user_id'];
             $userName = $user['user_name'];
             $userFullName = $user['user_fullName'];
@@ -230,6 +230,8 @@ function login()
             $_SESSION['user_fullName'] = $user['user_fullName'];
             $_SESSION['user_name'] = $user['user_name'];
 
+            $_SESSION['user_role'] = $user['user_role'];
+
             header('location: /index.php');
 
         } else {
@@ -240,4 +242,61 @@ function login()
 
     }
 
+}
+function selectUser($id)
+{
+
+    if (isset($_SESSION['userId'])) {
+
+        global $conn;
+        $sql = "SELECT * FROM user WHERE user_id = $id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        global $dataUser;
+        $dataUser = $statement->fetchAll();
+    }
+
+}
+
+function insertRequest()
+{
+
+    if (isset($_POST['requestAdmin'])) {
+
+        global $conn;
+        $reason = $_POST['reason'];
+        global $errRequest;
+        $errRequest = [];
+        try {
+            if (empty($reason)) {
+
+                $errRequest['reasonEmpty'] = "Bạn phải cần lý do";
+
+            } else if (strlen($reason) < 50) {
+
+                $errRequest['stringReason'] = "Lý do phải hơn 50 ký tự";
+
+            }
+
+        } catch (exception $e) {
+            echo ' ' . $e->getMessage();
+
+        }
+
+        if (empty($errRequest)) {
+
+            $sql = "INSERT INTO requests_admin	(user_id,reason) values('$_SESSION[userId]','$reason')";
+            $statement = $conn->prepare($sql);
+            if ($statement->execute()) {
+
+                echo "<script>Swal.fire(
+  'Đã gửi yêu cầu',
+  'Chúng tôi sẽ sét duyệt yêu cầu của bạn!',
+  'success'
+)</script>";
+            }
+
+        }
+
+    }
 }
