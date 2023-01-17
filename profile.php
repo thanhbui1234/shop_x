@@ -3,9 +3,12 @@ include './include/header.php'
 ?>
 <?php include "./include/functions.php"?>
 
+
+
+
 <body id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black" id="mainNav">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black" id="mainNav">
         <div class="container">
             <a class="navbar-brand  text-white" href="index.php"><i class="fa-solid fa-shop"></i> SHOP X </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
@@ -69,9 +72,14 @@ include './include/header.php'
             <div class="masthead-subheading"></div>
             <div class="masthead-heading text-uppercase"></div>
         </div>
-    </header>
+    </header> -->
+
+    <?php include './include/nav_profile.php'?>
+
+    <?php updateProfile()?>
 
 
+    <?php showProfile()?>
     <div class="bg-light ">
         <div class="container mt-5 shadow  bg-body rounded">
             <header class="pt-4">
@@ -82,14 +90,43 @@ include './include/header.php'
             <hr>
             <section class="">
 
-                <form action="" method="post">
+                <form action="#" enctype="multipart/form-data" method="POST">
 
-                    <div>
+                    <div id="profile">
                         <div>
+
+                            <?php foreach ($dataProfile as $profile) {?>
+                            <div class="mb-5 form-group">
+                                <label class="lable" for="">Tên đăng nhập</label> <input name="userName"
+                                    value="<?php echo $profile['user_name'] ?>" type="text">
+                            </div>
+                            <div class="mb-5 form-group">
+                                <label class="lable" for="">Họ và tên </label> <input name="fullName"
+                                    value="<?php echo $profile['user_fullName'] ?>" type="text">
+                            </div>
+                            <div class="mb-5 form-group">
+                                <label class="lable" for="">Email</label> <input
+                                    value="<?php echo $profile['user_email'] ?>" name="email" type="text">
+                            </div>
+                            <div class="mb-5 form-group">
+                                <label class="lable" for="">Số điện thoại</label> <input
+                                    value="<?php echo $profile['phone'] ?>" name="phone" type="text">
+                            </div>
+
+                            <input value="SAVE" class="btn btn-danger " name="save" type="submit">
+
+                        </div>
+                        <div id="avatar">
+                            <!-- <img width='130' src='/assets//img//portfolio//avatardefault_92824.webp' alt=''> -->
+
+                            <?php echo empty($profile['user_img']) ? "<img id='img' width='130' src='/assets//img//portfolio//avatardefault_92824.webp' alt=''>" : "<img id='img' height='150' width='130' src='/uploads//$profile[user_img]' alt=''>"; ?>
+                            <input name="avtUser" hidden id="file" type="file">
+                            <label class="border p-2 px-3" for="file">Chọn ảnh</label>
+
 
 
                         </div>
-                        <div></div>
+                        <?php }?>
                     </div>
 
 

@@ -390,6 +390,51 @@ function deleteUsers()
         $sql = "DELETE FROM user WHERE user_id = $id";
         $statement = $conn->prepare($sql);
         $statement->execute();
+        header("location: ./user.php");
 
     }
+}
+
+function request()
+{
+
+    global $conn;
+    $sql = "select * from requests_admin ";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    global $dataRequests;
+    $dataRequests = $statement->fetchAll();
+
+}
+
+function accept()
+{
+
+    if (isset($_GET['accept'])) {
+        global $conn;
+        $id_user = $_GET['accept'];
+        $id = $_GET['id'];
+        $sql = "update user set  user_role = 2  where user_id  = $id_user ";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+
+        $sqlDelete = "delete from requests_admin where id = $id";
+        $delete = $conn->prepare($sqlDelete);
+        $delete->execute();
+
+    }
+}
+
+function deleteRequest()
+{
+    if (isset($_GET['cancel'])) {
+        global $conn;
+
+        $id = $_GET['cancel'];
+        $sqlDelete = "delete from requests_admin where id = $id";
+        $delete = $conn->prepare($sqlDelete);
+        $delete->execute();
+
+    }
+
 }

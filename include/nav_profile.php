@@ -11,17 +11,7 @@
          <div class="collapse navbar-collapse" id="navbarResponsive">
              <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
 
-                 <li class="nav-item">
-                     <a class="nav-link" href="#categories_nav">Danh mục</a>
-                 </li>
 
-                 <li class="nav-item">
-                     <a class="nav-link" href="#portfolio">Sản phẩm</a>
-                 </li>
-
-                 <li class="nav-item">
-                     <a class="nav-link" href="#contact">Liên hệ</a>
-                 </li>
                  <li class="nav-item">
 
                      <?php if (isset($_SESSION['user_name'])) {?>
@@ -33,7 +23,7 @@
                                  alt=""> -->
 
                              <?php echo !empty($_SESSION['user_img'])
-    ? "<img class='id_user' height='26'  width='25' src='/uploads//$_SESSION[user_img]'alt='$_SESSION[user_name]'>"
+    ? "<img class='id_user' width='25' src='/uploads//$_SESSION[user_img]'alt='$_SESSION[user_name]'>"
     : " <img class='id_user' width='25' src='/assets//img//portfolio//avatardefault_92824.webp' alt=''>";
 
     ?>

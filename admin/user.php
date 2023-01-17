@@ -26,7 +26,7 @@
                 <?php switch ($user) {
 
     case 'request';
-        echo " hi";
+        include './include/request.php';
         break;
     default:
         include './include/view_all_users.php';

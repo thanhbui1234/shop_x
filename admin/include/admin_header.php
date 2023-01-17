@@ -1,4 +1,15 @@
 <?php ob_start()?>
+<?php session_start()?>
+
+<?php if (!isset($_SESSION['userId']) or $_SESSION['user_role'] == 1) {
+
+    header('Location: /index.php ');
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

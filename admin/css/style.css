@@ -57,3 +57,10 @@
 .headTable th {
   font-size: 15px;
 }
+.reason {
+  max-width: 300px;
+}
+
+#action {
+  max-width: 100px;
+}

@@ -30,7 +30,9 @@
             <td><?php echo $user['user_email'] ?></td>
             <td><?php echo $user['user_name'] ?></td>
             <td><?php echo $user['phone'] ?></td>
-            <td><img src="/uploads// <?php echo $user['user_img'] ?>" alt="<?php echo $user['user_name'] ?>"></td>
+            <td><img height="57" width="60" src="/uploads//<?php echo $user['user_img'] ?>"
+                    alt="<?php echo $user['user_name'] ?>">
+            </td>
             <td><?php echo $user['user_role'] == 1 ? 'Người dùng' : 'Admin' ?></td>
             <td><a href="user.php?normalUser=<?php echo $user['user_id'] ?>">Người dùng</a>
                 <a href="user.php?adminUser=<?php echo $user['user_id'] ?>">Admin</a>

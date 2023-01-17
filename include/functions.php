@@ -218,18 +218,16 @@ function login()
             return $errLogin['falseUserName'] = 'Tai khoan sai';
         }
         foreach ($dataLogin as $user) {
-            $userimg = $user['user_img'];
-            $userId = $user['user_id'];
-            $userName = $user['user_name'];
-            $userFullName = $user['user_fullName'];
+
             $userPassword = $user['user_password'];
         }
 
         if ((password_verify($password, $userPassword))) {
             $_SESSION['userId'] = $user['user_id'];
             $_SESSION['user_fullName'] = $user['user_fullName'];
-            $_SESSION['user_name'] = $user['user_name'];
 
+            $_SESSION['user_img'] = $user['user_img'];
+            $_SESSION['user_name'] = $user['user_name'];
             $_SESSION['user_role'] = $user['user_role'];
 
             header('location: /index.php');
@@ -266,6 +264,8 @@ function insertRequest()
         global $conn;
         $reason = $_POST['reason'];
         global $errRequest;
+        $dateRequest = date("Y-m-d H:i a ");
+
         $errRequest = [];
         try {
             if (empty($reason)) {
@@ -285,7 +285,7 @@ function insertRequest()
 
         if (empty($errRequest)) {
 
-            $sql = "INSERT INTO requests_admin	(user_id,reason) values('$_SESSION[userId]','$reason')";
+            $sql = "INSERT INTO requests_admin	(user_id,reason,date_request) values('$_SESSION[userId]','$reason','$dateRequest')";
             $statement = $conn->prepare($sql);
             if ($statement->execute()) {
 
@@ -299,4 +299,41 @@ function insertRequest()
         }
 
     }
+}
+
+function showProfile()
+{
+    global $conn;
+
+    $id = $_SESSION['userId'];
+
+    $sql = "select * from user where  user_id = $id";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    global $dataProfile;
+    $dataProfile = $statement->fetchAll();
+}
+
+function updateProfile()
+{
+    if (isset($_POST['save'])) {
+        $id = $_SESSION['userId'];
+        global $conn;
+        $userName = $_POST['userName'];
+        $fullName = $_POST['fullName'];
+
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $avt = $_FILES['avtUser']['name'];
+        $avt_image_tmp = $_FILES['avtUser']['tmp_name'];
+        $targe_dir = './uploads//';
+        $target_file = $targe_dir . $avt;
+        move_uploaded_file($avt_image_tmp, $target_file);
+
+        $sql = " update user set user_fullName = '$fullName' ,  user_email = '$email' , user_name = '$userName' , user_img = '$avt', phone = '$phone' where user_id = $id ";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+
+    }
+
 }

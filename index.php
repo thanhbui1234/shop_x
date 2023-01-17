@@ -14,11 +14,8 @@ include './include/header.php'
     <!-- PRODUCTS -->
 
 
-    <?php
 
-include './include/products.php'
-
-?>
+    <?php include './include/products.php'?>
 
 
     <!-- Clients-->

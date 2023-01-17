@@ -1,5 +1,7 @@
 <?php ob_start()?>
 <?php session_start()?>
+
+<?php session_reset()?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -84,3 +84,21 @@
 #gender1 {
   margin-bottom: 30px;
 }
+.lable {
+  min-width: 130px;
+  opacity: calc(60%);
+}
+
+#profile {
+  display: flex;
+  justify-content: space-around;
+}
+#avatar {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+#img {
+  border-radius: 50%;
+}
