@@ -4,17 +4,28 @@ include './include/database.php';
 function showProducts()
 {
     global $conn;
-    $sql = " SELECT * FROM prod where prod_status = 'public' ";
-    $statement = $conn->prepare($sql);
-    $statement->execute();
-    global $dataProducts;
-    $dataProducts = $statement->fetchAll();
-    $page = count($dataProducts);
+    $sqlCount = " SELECT * FROM prod where prod_status = 'public' ";
+    $statementCount = $conn->prepare($sqlCount);
+    $statementCount->execute();
+    $dataCount = $statementCount->fetchAll();
+    $page = count($dataCount);
 
     // mỗi trang sẽ show 9 sản phẩm
     $eachPage = 9;
+    global $countPage;
+    $countPage = ceil($page / $eachPage);
+    isset($_GET['page']) ? $pageGet = $_GET['page'] : $pageGet = '';
 
-    echo $countPage = ceil($page / $eachPage);
+    ($pageGet == '' || $pageGet == 1) ? $pageSelect = 0 : $pageSelect = ($pageGet * $eachPage) - $eachPage;
+
+// limit tham số thứ nhất là số thứ tự  cần select , tham số thứ 2 là số lượng cần select
+
+    $sqlPage = " select * from prod where prod_status = 'public' order by id desc limit  $pageSelect , $eachPage    ";
+
+    $statementPage = $conn->prepare($sqlPage);
+    $statementPage->execute();
+    global $dataProducts;
+    $dataProducts = $statementPage->fetchAll();
 
 }
 
@@ -28,7 +39,6 @@ function showProductsOnly()
         $statement->execute();
         global $dataProductsOnly;
         $dataProductsOnly = $statement->fetchAll();
-        unset($conn);
 
     }
 }

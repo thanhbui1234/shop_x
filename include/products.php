@@ -37,10 +37,12 @@
 
          </div>
      </div>
-     <div id="paging" class="  text-center mt-5">
+     <div id="paging" class=" mt-5">
 
-
-
+         <?php for ($i = 1; $i <= $countPage; $i++) {?>
+         <li class="pageation"><a href="index.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+         <?php }?>
 
      </div>
+
  </section>

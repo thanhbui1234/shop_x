@@ -420,7 +420,9 @@ function accept()
 
         $sqlDelete = "delete from requests_admin where id = $id";
         $delete = $conn->prepare($sqlDelete);
-        $delete->execute();
+        if ($delete->execute()) {
+            header('location: /admin/user.php?user=request');
+        }
 
     }
 }
@@ -429,11 +431,14 @@ function deleteRequest()
 {
     if (isset($_GET['cancel'])) {
         global $conn;
-
         $id = $_GET['cancel'];
         $sqlDelete = "delete from requests_admin where id = $id";
         $delete = $conn->prepare($sqlDelete);
-        $delete->execute();
+        if ($delete->execute()) {
+
+            header('location: /admin/user.php?user=request');
+        }
+        ;
 
     }
 
