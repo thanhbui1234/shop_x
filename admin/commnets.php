@@ -1,6 +1,8 @@
 <?php include './include/admin_header.php'?>
 
+
 <?php include './include/admin_function.php'?>
+
 
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -11,20 +13,16 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
                 <?php include './include/admin_nav.php'?>
 
-                <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                <?php countAll()?>
-                <?php include './include/admin_dasbord.php'?>
 
-                <!-- End of Main Content -->
 
+                <?php include './include/view_all_cmts.php';?>
 
 
                 <?php include './include/admin_footer.php'?>

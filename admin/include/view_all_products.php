@@ -2,7 +2,7 @@
 <?php apply()?>
 
 
-<div class=" ">
+<div class="container ">
     <form action="#" method="post" class="">
         <div class="d-flex flex-row gap-2  ">
             <select name="option" class="form-select form-select-sm form-control w-25 mb-4" id="selectAllprod"
@@ -19,7 +19,7 @@
 
 
         </div>
-        <table class="table shadow p-3 mb-5 bg-body rounded  table-condensed table-bordered  ">
+        <table class="table shadow p-3 mb-5 bg-body rounded   table-condensed table-bordered  ">
             <thead class="headTable">
                 <tr>
                     <th> <input id="selectAllBoxes" type="checkbox"></th>
@@ -45,11 +45,9 @@
                     <td> <?php echo $product['id'] ?></td>
                     <td> <?php echo $product['prod_name'] ?></td>
 
-                    <?php showNameCat($product['prod_cat'])?>
-
-                    <?php foreach ($dataNameCat as $nameCat) {?>
-
-                    <td> <?php echo $nameCat['name_cat'] ?> </td>
+                    <?php showNameCate($product['prod_cat'])?>
+                    <?php foreach ($dataNameCat as $cate) {?>
+                    <td><?php echo $cate['name_cat'] ?></td>
                     <?php }?>
 
 

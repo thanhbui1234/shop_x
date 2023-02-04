@@ -19,9 +19,6 @@
   outline: none;
 }
 
-#notregister {
-  right: 115px;
-}
 .err_user {
   color: red !important;
 }
@@ -117,4 +114,17 @@
   position: relative;
   left: 130px;
   max-width: 600px;
+}
+
+#sale {
+  color: black;
+  font-size: 30px;
+  margin-left: 20px;
+}
+#notregister {
+  position: absolute;
+  right: 0;
+}
+#contactForm {
+  position: relative;
 }

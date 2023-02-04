@@ -1,4 +1,6 @@
  <div class="container-fluid">
+
+     <?php countAll()?>
      <!-- Page Heading -->
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
@@ -16,7 +18,7 @@
                                  Sản phẩm
                              </div>
                              <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                 $40,000
+                                 <?php echo $dataProds ?>
                              </div>
                          </div>
                          <div class="col-auto">
@@ -37,7 +39,8 @@
                                  Loại sản phẩm
                              </div>
                              <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                 $215,000
+                                 <?php echo $dataCategories ?>
+
                              </div>
                          </div>
                          <div class="col-auto">
@@ -60,15 +63,11 @@
                              <div class="row no-gutters align-items-center">
                                  <div class="col-auto">
                                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                         50%
+                                         <?php echo $dataUsers ?>
+
                                      </div>
                                  </div>
-                                 <div class="col">
-                                     <div class="progress progress-sm mr-2">
-                                         <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                     </div>
-                                 </div>
+
                              </div>
                          </div>
                          <div class="col-auto">
@@ -89,7 +88,8 @@
                                  Bình Luận
                              </div>
                              <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                 18
+                                 <?php echo $dataCmts ?>
+
                              </div>
                          </div>
                          <div class="col-auto">
@@ -108,7 +108,7 @@
      <!-- GOOGLE CHART -->
 
      <div class="row">
-
+         <canvas id="myChart"></canvas>
      </div>
 
      <!-- Content Row -->

@@ -5,7 +5,7 @@
 
     <?php foreach ($dataShowUpdateProd as $product) {?>
 
-    <?php selectshowUpdateProduct($product['prod_cat'])?>
+
 
     <div class="form-group">
         <label for="exampleInputEmail1">Tên sản phẩm</label>
@@ -18,7 +18,15 @@
     <br>
     <div class="form-group">
         <select name="prod_category" id="select" class="form-select" aria-label="Default select example">
-            <option value="<?php echo $product['prod_cat'] ?>"> <?php echo $product['prod_cat'] ?></option>
+
+            <?php showNameCate($product['prod_cat'])?>
+            <?php foreach ($dataNameCat as $cate) {}?>
+
+
+            <option value="<?php echo $cate['name_cat'] ?>"> <?php echo $cate['name_cat'] ?></option>
+
+            <?php selectshowUpdateProduct($cate['name_cat'])?>
+
             <?php foreach ($dataShowSelect as $select) {?>
             <option value="<?php echo $select['name_cat'] ?>"><?php echo $select['name_cat'] ?>
             </option>

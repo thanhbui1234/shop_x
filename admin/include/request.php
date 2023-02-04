@@ -18,11 +18,14 @@
 
     <tbody>
 
-        <?php foreach ($dataRequests as $request) {?>
+        <?php
+
+if (!empty($dataRequests)) {
+    foreach ($dataRequests as $request) {?>
         <tr>
             <td><?php echo $request['id'] ?></td>
             <td><?php echo $request['user_id'] ?></td>
-            <td class="reason"><?php echo $request['reason'] ?></td>
+            <td id="reason_request" class="reason"><?php echo substr($request['reason'], 0, 40, ) . '....' ?></td>
             <td><?php echo $request['date_request'] ?></td>
             <td>
                 <a href="user.php?user=request&&accept=<?php echo $request['user_id'] ?>&&id=<?php echo $request['id'] ?>
@@ -32,8 +35,13 @@
 "><button class="btn btn-danger">Hủy</button></a>
             </td>
         </tr>
-        <?php }?>
+        <?php }} else {?>
 
+        <tr>
+            <td class="grid text-center text-danger" colspan="5">EMPTY</td>
+        </tr>
+
+        <?php }?>
 
     </tbody>
 </table>

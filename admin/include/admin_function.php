@@ -104,22 +104,6 @@ function updateCategory()
 
 }
 
-function showNameCat($value)
-{
-    if (isset($value)) {
-        global $conn;
-        $sql = " select name_cat from prod_categories where id_cat = $value";
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        global $dataNameCat;
-        $dataNameCat = $statement->fetchAll();
-
-    }
-
-}
-
-/// product
-
 function addProduct()
 {
     if (isset($_POST['addProd'])) {
@@ -167,9 +151,18 @@ function addProduct()
             $errProduct['prod_content'] = 'Bạn  phải nhập nội dung sản phẩm';
         }
 
+        if (!empty($prod_sale)) {
+
+            $prod_price_old = $prod_price;
+
+            $prod_price_sale = ($prod_price * $prod_sale) / 100;
+            $prod_price = $prod_price - $prod_price_sale;
+
+        }
+
         if (empty($errProduct)) {
-            $sql = "insert into prod ( prod_name  , prod_cat , prod_price , prod_img ,  prod_tag ,  prod_content,   prod_status , prod_sale )";
-            $sql .= " values ('$prod_name' , '$prod_category', '$prod_price', '$prod_img', '$prod_tag', '$prod_content', '$prod_status', '$prod_sale') ";
+            $sql = "insert into prod ( prod_name  , prod_cat , prod_price , prod_img ,  prod_tag ,  prod_content,   prod_status , prod_sale  ,prod_price_old)";
+            $sql .= " values ('$prod_name' , '$prod_category', '$prod_price', '$prod_img', '$prod_tag', '$prod_content', '$prod_status', '$prod_sale'  ,'$prod_price_old') ";
             $statement = $conn->prepare($sql);
             $statement->execute();
 
@@ -178,6 +171,19 @@ function addProduct()
     }
 
 }
+
+function showNameCate($value)
+{
+
+    global $conn;
+    $sql = " select * from prod_categories where id_cat = '$value' ";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    global $dataNameCat;
+    $dataNameCat = $statement->fetchAll();
+
+}
+
 function showUpdateProduct()
 {
     if (isset($_GET['id'])) {
@@ -216,6 +222,7 @@ function updateProduct()
         $prod_price = $_POST['prod_price'];
         $prod_status = $_POST['prod_status'];
         // nếu user k nhập ảnh mà muốn sử dụng ảnh cũ
+
         $prod_img = $_FILES['prod_img']['name'];
         if (empty($prod_img)) {
             $sqlimg = "select prod_img from prod where id = $id";
@@ -233,10 +240,20 @@ function updateProduct()
         $target_file = $targe_dir . $prod_img;
         move_uploaded_file($prod_image_tmp, $target_file);
         $prod_sale = $_POST['prod_sale'];
+
+        // if (!empty($prod_sale)) {
+
+        //     $prod_price_old = $prod_price;
+
+        //     $prod_price_sale = ($prod_price * $prod_sale) / 100;
+        //     $prod_price = $prod_price - $prod_price_sale;
+
+        // }
+
         $prod_content = $_POST['prod_content'];
 
         $sql = " update prod set prod_name = '$prod_name' , prod_cat = '$prod_category'  ,prod_tag = '$prod_tag'  ";
-        $sql .= ", prod_price = '$prod_price', prod_status = '$prod_status ' , prod_img = '$prod_img' , prod_sale  = '$prod_sale' , prod_content = '$prod_content' ";
+        $sql .= ", prod_price = '$prod_price', prod_status = '$prod_status ' , prod_img = '$prod_img' , prod_sale  = '$prod_sale' , prod_content = '$prod_content'  ";
         $sql .= " where id = $id";
         $statement = $conn->prepare($sql);
 
@@ -360,7 +377,8 @@ function normalUsers()
         $statement = $conn->prepare($sql);
 
         if ($statement->execute()) {
-            header('location : ./user.php ');
+
+            header('location: ./user.php');
         }
 
     }
@@ -374,7 +392,10 @@ function adminUsers()
         $id = $_GET['adminUser'];
         $sql = " update user set user_role = '2' where user_id = $id";
         $statement = $conn->prepare($sql);
-        $statement->execute();
+        if ($statement->execute()) {
+
+            header('location: ./user.php');
+        }
 
     }
 }
@@ -442,4 +463,91 @@ function deleteRequest()
 
     }
 
+}
+
+function showCmts()
+{
+
+    global $conn;
+    $sql = "select * from cmts ";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    global $dataCmts;
+    $dataCmts = $statement->fetchAll();
+}
+
+function countAll()
+{
+    global $conn;
+////////////////////////////////////////////////
+    $prod = " select count(*) from prod";
+    $statement = $conn->prepare($prod);
+    $statement->execute();
+    global $dataProds;
+    $dataProds = $statement->fetchColumn();
+////////////////////////////////////////////////
+
+    $prod_categories = " select count(*) from prod_categories";
+    $statement = $conn->prepare($prod_categories);
+    $statement->execute();
+    global $dataCategories;
+    $dataCategories = $statement->fetchColumn();
+////////////////////////////////////////////////
+
+    $cmts = " select count(*) from cmts";
+    $statement = $conn->prepare($cmts);
+    $statement->execute();
+    global $dataCmts;
+    $dataCmts = $statement->fetchColumn();
+////////////////////////////////////////////////
+
+    $user = " select count(*) from user";
+    $statement = $conn->prepare($user);
+    $statement->execute();
+    global $dataUsers;
+    $dataUsers = $statement->fetchColumn();
+
+}
+
+function linkProduct($product)
+{
+    global $conn;
+    $sql = "select prod_name from prod where id = $product";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    global $dataLinkProd;
+    $dataLinkProd = $statement->fetchAll();
+}
+
+function duyet()
+{
+
+    if (isset($_GET['duyet'])) {
+        global $conn;
+        $id = $_GET['duyet'];
+        $sql = "update cmts set DUYET = 1 WHERE id = $id";
+        $statement = $conn->prepare($sql);
+        if ($statement->execute()) {
+
+            header('location: ./commnets.php');
+        }
+
+    }
+}
+function deleteCmt()
+{
+
+    if (isset($_GET['deleteCmt'])) {
+
+        global $conn;
+
+        $id = $_GET['deleteCmt'];
+        $sql = "DELETE FROM cmts WHERE id = $id";
+        $statement = $conn->prepare($sql);
+        if ($statement->execute()) {
+
+            header('location: ./commnets.php');
+        }
+
+    }
 }

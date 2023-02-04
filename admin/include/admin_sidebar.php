@@ -46,10 +46,11 @@
 
 
      <!-- Divider -->
-     <hr class="sidebar-divider" />
+
 
      <!-- Heading -->
-
+     <?php if ($_SESSION['user_role'] == 3) {?>
+     <hr class="sidebar-divider" />
      <li class="nav-item">
          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" aria-expanded="true"
              aria-controls="collapseTwo">
@@ -64,7 +65,7 @@
              </div>
          </div>
      </li>
-
+     <?php }?>
      <!-- Nav Item - Tables -->
 
      <hr class="sidebar-divider" />
@@ -73,7 +74,7 @@
 
      <!-- Nav Item - Tables -->
      <li class="nav-item">
-         <a class="nav-link" href="tables.html">
+         <a class="nav-link" href="commnets.php">
              <i class="fas fa-fw fa-table"></i>
              <span>Bình Luận</span></a>
      </li>
